@@ -5,10 +5,10 @@ const User = require("../Models/user");
 const authFile = require("../Services/authentication");
 
 
-route.get("/", (req,res) =>
-{
-    return res.send("Welcome to MovieBooking Web App")
-});
+// route.get("/", (req,res) =>
+// {
+//     return res.send("Welcome to MovieBooking Web App")
+// });
 
 route.post("/Signup", async (req,res) =>
 {
