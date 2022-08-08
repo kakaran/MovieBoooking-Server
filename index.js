@@ -25,6 +25,6 @@ app.listen(PORT , (error) =>
         console.log(`Server Start fail ${error}`);
     }
     else{
-        console.log(`Server start successfully port is ${port}`);
+        console.log(`Server start successfully port is ${PORT}`);
     }
 })
