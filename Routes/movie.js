@@ -75,7 +75,7 @@ route.post("/moviebooking/:movieid" , authFile.authenticationChecker,async (req,
         const movieId = req.params.movieid;
     
         const user = await User.findByIdAndUpdate(userid,{
-            moviebooking : movieId
+           $push : {moviebooking : movieId}
         },
         {
             new : true,

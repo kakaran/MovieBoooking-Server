@@ -126,7 +126,8 @@ route.post("/Login", async (req,res) =>
     const token = authFile.gentoken(user._id);
 
     console.log("Successfully");
-    return res.send({token : token});
+    return res.send({token : token,
+    userid:user._id});
     } catch (error) {
         console.log(error);
     }
