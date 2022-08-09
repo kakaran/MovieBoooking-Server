@@ -5,7 +5,7 @@ const user = require("./Routes/user");
 const movie = require("./Routes/movie");
 const dbconnect = require("./Services/mongoose");
 const app = express();
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT;
 
 dbconnect();
 
