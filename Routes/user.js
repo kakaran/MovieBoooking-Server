@@ -14,10 +14,10 @@ route.post("/Signup", async (req,res) =>
 {
     try {
     var salt = bcrypt.genSaltSync(10);
-    console.log(req.body.password , req.body.confirmpassword);
+    // console.log(req.body.password , req.body.confirmpassword);
     var hash = bcrypt.hashSync(req.body.password, salt);
     var hash2 = bcrypt.hashSync(req.body.confirmpassword, salt);
-    const letters = /^[a-zA-z]*$/;
+    const letters = /^[a-zA-z ]*$/;
 
     const userData = {
         name : req.body.name,
@@ -31,21 +31,22 @@ route.post("/Signup", async (req,res) =>
         console.log("Confirm Password and Password is Mismatch");
         return res.status(500).send("Confirm Password and Password is Mismatch");
     }
-    else if(!userData.name)
-    {
-        console.log("Pleace enter the name");
-        return res.status(500).send("Pleace enter the name");
-    }   
     else if(!userData.name.match(letters))
     {
         console.log("Username Must Contain only alphabets");
         return res.status(500).send("Username Must Contain only alphabets");
+    }
+    else if(!(userData.name && userData.useremail))
+    {
+        console.log("Fill all blanks");
+        return res.status(500).send("Fill all blanks");
     }
 
     await User.create(userData);
 
     console.log("SignUp Complete");
     return res.send("SignUp Complete");
+    
     } catch (error) {
         console.log(error);
     }
@@ -128,7 +129,7 @@ route.post("/Login", async (req,res) =>
     console.log("Successfully");
     return res.send({token : token,
     userid:user._id});
-    } catch (error) {
+    }catch (error) {
         console.log(error);
     }
 })  
