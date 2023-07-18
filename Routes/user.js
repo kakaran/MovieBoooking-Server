@@ -136,10 +136,14 @@ route.post("/Login", async (req,res) =>
     
 
 
-route.get("/userdata" ,authFile.authenticationChecker, async(req,res) =>
+route.post("/userdata" ,authFile.authenticationChecker, async(req,res) =>
 {
     try {
-        const data = await User.find({});
+        const user ={
+            useremail : req.body.useremail
+        }
+        const data = await User.findOne({useremail : user.useremail});
+        console.log(data);
 
         return res.send(data);  
     } catch (error) {
